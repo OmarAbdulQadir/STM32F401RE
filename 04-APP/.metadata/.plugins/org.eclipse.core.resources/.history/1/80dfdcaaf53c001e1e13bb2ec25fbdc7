@@ -1,0 +1,72 @@
+/**********************************************************************************/
+/***						Date: 17/8/2023	Day: Thursday						***/
+/***			7-Segment display driver for the microcontroller STM32F401		***/
+/***    			 Created By: Omar Abdul Qadir	 Version= 2.0	            ***/
+/**********************************************************************************/
+/***		         Note: All the data in the file is readable,				***/
+/***			And any editing will affect the controller's behavior,			***/
+/***				  So It's not recommended to edit any data,					***/
+/***			Unless you are sure of what is the effect on behaviors.			***/
+/**********************************************************************************/
+
+
+
+/**********************************************************************************
+ *******************	 	   Standard libraries section			***************
+ **********************************************************************************/
+#include "../Inc/STD_TYPES.h"
+#include "../Inc/BIT_MATH.h"
+
+/**********************************************************************************
+ *******************		 	MCAL libraries section				***************
+ **********************************************************************************/
+#include "../Inc/GPIO_interface.h"
+
+/**********************************************************************************
+ *******************		 	Private headers section				***************
+ **********************************************************************************/
+#include "../Inc/Disp7Seg_config.h"
+#include "../Inc/Disp7Seg_private.h"
+#include "../Inc/Disp7Seg_interface.h"
+
+/**********************************************************************************
+ *******************	 		Global variables section			***************
+ **********************************************************************************/
+
+
+/**********************************************************************************
+ *******************		 	Disp7Seg_voidSysInit				***************
+ **********************************************************************************/
+/* 		Function initiates the 7 segment display, Takes 1 arg
+							- Pointer to 7-seg struct
+*/
+void Disp7Seg_voidSysInit(Disp7Seg_t * const Dispx_Data ){
+
+	for(u8 i= 0; i< 7; i++){
+		GPIO_voidSetPinMode(Dispx_Data -> original_u8PortID, Dispx_Data -> ptr_u8DispPins[i], MODE_OUTPUT);
+		GPIO_voidSetOutType(Dispx_Data -> original_u8PortID, Dispx_Data -> ptr_u8DispPins[i], OUTPUT_TYPE_PUSH_PULL);
+	}
+
+}
+
+
+void Disp7Seg_voidWriteNumber(Disp7Seg_t * const Dispx_Datae ){
+	u8 NumberCode_CA[10] = {0x01, 0x4F, 0x12, 0x06, 0x4C, 0x24, 0x20, 0x0F, 0x00, 0x04};
+	u8 NumberCode_CC[10] = {0x7E, 0x30, 0x6D, 0x79, 0x33, 0x5B, 0x5F, 0x70, 0x7F, 0x7B};
+
+	switch(copy_u8DisType){
+	case DispType_CA:
+		for(u8 i= 0; i< 7; i++){
+				GPIO_voidWriteData(Dispx_Data -> original_u8PortID, Dispx_Data -> ptr_u8DispPins[i], get_bit(NumberCode_CA[copy_u8Number], Dispx_Data -> ptr_u8DispPins[i]));
+		}
+		break;
+	case DispType_CC:
+		for(u8 i= 0; i< 7; i++){
+				GPIO_voidWriteData(copy_u8PDispx_Data -> original_u8PortIDortID, Dispx_Data -> ptr_u8DispPins[i], get_bit(NumberCode_CC[copy_u8Number], Dispx_Data -> ptr_u8DispPins[i]));
+		}
+		break;
+	default:
+		break;
+	}
+}
+

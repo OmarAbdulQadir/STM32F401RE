@@ -1,0 +1,40 @@
+/*
+ * Disp7Seg_interface.h
+ *
+ *  Created on: Aug 17, 2023
+ *      Author: Omar A.Qadir
+ */
+
+#ifndef DISP7SEG_INTERFACE_H_
+#define DISP7SEG_INTERFACE_H_
+
+/**********************************************************************************
+ *******************		 	7 Segment display data struct		***************
+ **********************************************************************************/
+typedef struct{
+
+	u8 original_u8PortID:	3;
+	u8 original_u8DispType: 1;
+	u8 original_u8Number: 	4;
+	u8 ptr_u8DispPins[7];
+
+}Disp7Seg_t;
+
+/**********************************************************************************
+ *******************		 	Display type macros					***************
+ **********************************************************************************/
+#define DispType_CA			0					// Common anode type
+#define DispType_CC			1					// Common cathode type
+
+/**********************************************************************************
+ *******************		 	Disp7Seg_voidSysInit				***************
+ **********************************************************************************/
+void Disp7Seg_voidSysInit(Disp7Seg_t * const Dispx_Data );
+
+/**********************************************************************************
+ *******************		 Disp7Seg_voidWriteNumber				***************
+ **********************************************************************************/
+void Disp7Seg_voidWriteNumber(Disp7Seg_t * const Dispx_Datae );
+
+
+#endif /* DISP7SEG_INTERFACE_H_ */

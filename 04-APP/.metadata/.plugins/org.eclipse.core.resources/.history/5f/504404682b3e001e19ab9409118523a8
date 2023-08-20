@@ -1,0 +1,16 @@
+/*
+ * TIMER_interface.h
+ *
+ *  Created on: Aug 19, 2023
+ *      Author: Omar A.Qadir
+ */
+
+#ifndef TIM_INTERFACE_H_
+#define TIM_INTERFACE_H_
+
+
+void TIM_vDelay_ms(u16 );
+void TIM_vDelay_us(u16 );
+
+
+#endif /* TIM_INTERFACE_H_ */

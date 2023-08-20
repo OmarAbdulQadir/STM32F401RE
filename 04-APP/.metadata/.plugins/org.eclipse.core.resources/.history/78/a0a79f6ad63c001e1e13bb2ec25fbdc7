@@ -1,0 +1,37 @@
+/**********************************************************************************/
+/***						Date: 16/8/2023	Day: Wednesday						***/
+/***		General purpose I/O driver for the microcontroller STM32F401		***/
+/***    			 Created By: Omar Abdul Qadir	 Version= 2.0	            ***/
+/**********************************************************************************/
+/***		         Note: All the data in the file is readable,				***/
+/***			And any editing will affect the controller's behavior,			***/
+/***				  So It's not recommended to edit any data,					***/
+/***			Unless you are sure of what is the effect on behaviors.			***/
+/**********************************************************************************/
+
+/**********************************************************************************
+ ******************* 	guard of file will call on time in .c		***************
+ **********************************************************************************/
+#ifndef GPIO_CONFIG_H_
+#define GPIO_CONFIG_H_
+
+#define GPIO_ENABLE					1
+#define GPIO_DISABLE				0
+
+#define	GPIOA_CONFIG_EN				GPIO_DISABLE
+#define	GPIOA_CONFIG_MODER
+
+
+
+
+
+
+
+
+
+
+
+
+#endif /* GPIO_CONFIG_H_ */
+
+

@@ -1,0 +1,7 @@
+../Src/GPIO_program.c:52:6:GPIO_voidSetPinMode	16	static
+../Src/GPIO_program.c:75:6:GPIO_voidSetOutType	16	static
+../Src/GPIO_program.c:100:6:GPIO_voidSetOutSpeed	16	static
+../Src/GPIO_program.c:125:6:GPIO_voidSetPull	16	static
+../Src/GPIO_program.c:143:4:GPIO_u8ReadData	24	static
+../Src/GPIO_program.c:165:6:GPIO_voidWriteData	16	static
+../Src/GPIO_program.c:182:6:GPIO_voidPinSetAltFn	72	static

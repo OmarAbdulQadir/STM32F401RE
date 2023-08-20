@@ -1,0 +1,50 @@
+/**********************************************************************************/
+/***						Date: 19/8/2023	Day: Saturday						***/
+/***				Timers driver for the microcontroller STM32F401				***/
+/***    			 Created By: Omar Abdul Qadir	 Version= 1.0	            ***/
+/**********************************************************************************/
+/***		         Note: All the data in the file is readable,				***/
+/***			And any editing will affect the controller's behavior,			***/
+/***				  So It's not recommended to edit any data,					***/
+/***			Unless you are sure of what is the effect on behaviors.			***/
+/**********************************************************************************/
+
+/**********************************************************************************
+ ******************* 	guard of file will call on time in .c		***************
+ **********************************************************************************/
+#ifndef TIM_PRIVATE_H_
+#define TIM_PRIVATE_H_
+
+/**********************************************************************************
+ ******************* 		Basic timers type struct				***************
+ **********************************************************************************/
+typedef struct{
+	u32	CR1;
+	u32	RESERVED_ADD1;
+	u32	SMCR;
+	u32	DIER;
+	u32	SR;
+	u32	EGR;
+	u32	CCMR1;
+	u32	RESERVED_ADD2;
+	u32	CCER;
+	u32	CNT;
+	u32	PSC;
+	u32	ARR;
+	u32	RESERVED_ADD3;
+	u32	CCR1;
+	u32	CRR2;
+}B_TIM_t;
+
+/**********************************************************************************
+ ******************* 		Basic timers type struct				***************
+ **********************************************************************************/
+typedef struct{
+
+}G_TIMER_t;
+
+typedef struct{
+
+}A_TIMER_t;
+
+#endif /* TIM_PRIVATE_H_ */

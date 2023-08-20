@@ -1,0 +1,171 @@
+/**********************************************************************************/
+/***						Date: 16/8/2023	Day: Wednesday						***/
+/***		General purpose I/O driver for the microcontroller STM32F401		***/
+/***    			 Created By: Omar Abdul Qadir	 Version= 2.0	            ***/
+/**********************************************************************************/
+/***		         Note: All the data in the file is readable,				***/
+/***			And any editing will affect the controller's behavior,			***/
+/***				  So It's not recommended to edit any data,					***/
+/***			Unless you are sure of what is the effect on behaviors.			***/
+/**********************************************************************************/
+
+/**********************************************************************************
+ ******************* 	guard of file will call on time in .c		***************
+ **********************************************************************************/ 
+#ifndef GPIO_PRIVATE_H
+#define GPIO_PRIVATE_H
+
+/**********************************************************************************
+ *******************			GPIO ports struct type				***************
+ **********************************************************************************/ 
+
+typedef struct{
+	volatile u32 MODER;
+	volatile u32 OTYPER;
+	volatile u32 OSPEEDR;
+	volatile u32 PUPDR;
+	volatile u32 IDR;
+	volatile u32 ODR;
+	volatile u32 BSRR;
+	volatile u32 LCKR;
+	volatile u64 AFR;
+}GPIO_t;
+
+
+/**********************************************************************************
+ *******************		GPIO ports base addresses				***************
+ **********************************************************************************/ 
+
+#define  GPIOA_BASE_ADDRESS								((GPIO_t*) 0x40020000u)
+#define  GPIOB_BASE_ADDRESS								((GPIO_t*) 0x40020400u)
+#define  GPIOC_BASE_ADDRESS								((GPIO_t*) 0x40020800u)
+#define  GPIOD_BASE_ADDRESS								((GPIO_t*) 0x40020C00u)
+#define  GPIOE_BASE_ADDRESS								((GPIO_t*) 0x40021000u)
+#define  GPIOH_BASE_ADDRESS								((GPIO_t*) 0x40021C00u)
+
+/***********************************************************************************
+	-----> Macros
+			  *  Register offset Map	 GPIO_x
+************************************************************************************/
+
+#define GPIOx_MODER										0x00
+#define GPIOx_OTYPER									0x04
+#define GPIOx_OSPEEDR									0x08
+#define GPIOx_PUPDR										0x0C
+#define GPIOx_IDR										0x10
+#define GPIOx_ODR										0x14
+#define GPIOx_BSRR										0x18
+#define GPIOx_LCKR										0x1C
+#define GPIOx_AFRL										0x20
+#define GPIOx_AFRH										0x24
+
+/***********************************************************************************
+	-----> Macros
+			  *  Register Map	 GPIO_A		
+************************************************************************************/
+
+#define  GPIOA_MODER									(*((volatile u32*) (GPIOA_BASE_ADDRESS +GPIOx_MODER)))			
+#define  GPIOA_OTYPER									(*((volatile u32*) (GPIOA_BASE_ADDRESS +GPIOx_OTYPER)))			
+#define  GPIOA_OSPEEDR								    (*((volatile u32*) (GPIOA_BASE_ADDRESS +GPIOx_OSPEEDR)))			
+#define  GPIOA_PUPDR									(*((volatile u32*) (GPIOA_BASE_ADDRESS +GPIOx_PUPDR)))			
+#define  GPIOA_IDR										(*((volatile u32*) (GPIOA_BASE_ADDRESS +GPIOx_IDR)))			
+#define  GPIOA_ODR										(*((volatile u32*) (GPIOA_BASE_ADDRESS +GPIOx_ODR)))			
+#define  GPIOA_BSRR										(*((volatile u32*) (GPIOA_BASE_ADDRESS +GPIOx_BSRR)))			
+#define  GPIOA_LCKR										(*((volatile u32*) (GPIOA_BASE_ADDRESS +GPIOx_LCKR)))			
+#define  GPIOA_AFRL										(*((volatile u32*) (GPIOA_BASE_ADDRESS +GPIOx_AFRL)))			
+#define  GPIOA_AFRH										(*((volatile u32*) (GPIOA_BASE_ADDRESS +GPIOx_AFRH)))
+
+/***********************************************************************************
+	-----> Macros
+			  *  Register Map	 GPIO_B		
+************************************************************************************/
+
+#define  GPIOB_MODER									(*((volatile u32*) (GPIOB_BASE_ADDRESS +GPIOx_MODER)))
+#define  GPIOB_OTYPER									(*((volatile u32*) (GPIOB_BASE_ADDRESS +GPIOx_OTYPER)))
+#define  GPIOB_OSPEEDR								    (*((volatile u32*) (GPIOB_BASE_ADDRESS +GPIOx_OSPEEDR)))
+#define  GPIOB_PUPDR									(*((volatile u32*) (GPIOB_BASE_ADDRESS +GPIOx_PUPDR)))
+#define  GPIOB_IDR										(*((volatile u32*) (GPIOB_BASE_ADDRESS +GPIOx_IDR)))
+#define  GPIOB_ODR										(*((volatile u32*) (GPIOB_BASE_ADDRESS +GPIOx_ODR)))
+#define  GPIOB_BSRR										(*((volatile u32*) (GPIOB_BASE_ADDRESS +GPIOx_BSRR)))
+#define  GPIOB_LCKR										(*((volatile u32*) (GPIOB_BASE_ADDRESS +GPIOx_LCKR)))
+#define  GPIOB_AFRL										(*((volatile u32*) (GPIOB_BASE_ADDRESS +GPIOx_AFRL)))
+#define  GPIOB_AFRH										(*((volatile u32*) (GPIOB_BASE_ADDRESS +GPIOx_AFRH)))
+
+/***********************************************************************************
+	-----> Macros
+			  *  Register Map	 GPIO_C		
+************************************************************************************/
+
+#define  GPIOC_MODER									(*((volatile u32*) (GPIOC_BASE_ADDRESS +GPIOx_MODER)))
+#define  GPIOC_OTYPER									(*((volatile u32*) (GPIOC_BASE_ADDRESS +GPIOx_OTYPER)))
+#define  GPIOC_OSPEEDR								    (*((volatile u32*) (GPIOC_BASE_ADDRESS +GPIOx_OSPEEDR)))
+#define  GPIOC_PUPDR									(*((volatile u32*) (GPIOC_BASE_ADDRESS +GPIOx_PUPDR)))
+#define  GPIOC_IDR										(*((volatile u32*) (GPIOC_BASE_ADDRESS +GPIOx_IDR)))
+#define  GPIOC_ODR										(*((volatile u32*) (GPIOC_BASE_ADDRESS +GPIOx_ODR)))
+#define  GPIOC_BSRR										(*((volatile u32*) (GPIOC_BASE_ADDRESS +GPIOx_BSRR)))
+#define  GPIOC_LCKR										(*((volatile u32*) (GPIOC_BASE_ADDRESS +GPIOx_LCKR)))
+#define  GPIOC_AFRL										(*((volatile u32*) (GPIOC_BASE_ADDRESS +GPIOx_AFRL)))
+#define  GPIOC_AFRH										(*((volatile u32*) (GPIOC_BASE_ADDRESS +GPIOx_AFRH)))
+	
+/***********************************************************************************
+	-----> Macros
+			  *  Register Map	 GPIO_D		
+************************************************************************************/
+
+#define  GPIOD_MODER									(*((volatile u32*) (GPIOD_BASE_ADDRESS +GPIOx_MODER)))
+#define  GPIOD_OTYPER									(*((volatile u32*) (GPIOD_BASE_ADDRESS +GPIOx_OTYPER)))
+#define  GPIOD_OSPEEDR								    (*((volatile u32*) (GPIOD_BASE_ADDRESS +GPIOx_OSPEEDR)))
+#define  GPIOD_PUPDR									(*((volatile u32*) (GPIOD_BASE_ADDRESS +GPIOx_PUPDR)))
+#define  GPIOD_IDR										(*((volatile u32*) (GPIOD_BASE_ADDRESS +GPIOx_IDR)))
+#define  GPIOD_ODR										(*((volatile u32*) (GPIOD_BASE_ADDRESS +GPIOx_ODR)))
+#define  GPIOD_BSRR										(*((volatile u32*) (GPIOD_BASE_ADDRESS +GPIOx_BSRR)))
+#define  GPIOD_LCKR										(*((volatile u32*) (GPIOD_BASE_ADDRESS +GPIOx_LCKR)))
+#define  GPIOD_AFRL										(*((volatile u32*) (GPIOD_BASE_ADDRESS +GPIOx_AFRL)))
+#define  GPIOD_AFRH										(*((volatile u32*) (GPIOD_BASE_ADDRESS +GPIOx_AFRH)))
+
+/***********************************************************************************
+	-----> Macros
+			  *  Register Map	 GPIO_E		
+************************************************************************************/
+
+#define  GPIOE_MODER									(*((volatile u32*) (GPIOE_BASE_ADDRESS +GPIOx_MODER)))
+#define  GPIOE_OTYPER									(*((volatile u32*) (GPIOE_BASE_ADDRESS +GPIOx_OTYPER)))
+#define  GPIOE_OSPEEDR								    (*((volatile u32*) (GPIOE_BASE_ADDRESS +GPIOx_OSPEEDR)))
+#define  GPIOE_PUPDR									(*((volatile u32*) (GPIOE_BASE_ADDRESS +GPIOx_PUPDR)))
+#define  GPIOE_IDR										(*((volatile u32*) (GPIOE_BASE_ADDRESS +GPIOx_IDR)))
+#define  GPIOE_ODR										(*((volatile u32*) (GPIOE_BASE_ADDRESS +GPIOx_ODR)))
+#define  GPIOE_BSRR										(*((volatile u32*) (GPIOE_BASE_ADDRESS +GPIOx_BSRR)))
+#define  GPIOE_LCKR										(*((volatile u32*) (GPIOE_BASE_ADDRESS +GPIOx_LCKR)))
+#define  GPIOE_AFRL										(*((volatile u32*) (GPIOE_BASE_ADDRESS +GPIOx_AFRL)))
+#define  GPIOE_AFRH										(*((volatile u32*) (GPIOE_BASE_ADDRESS +GPIOx_AFRH)))
+
+/***********************************************************************************
+	-----> Macros
+			  *  Register Map	 GPIO_H
+************************************************************************************/
+
+#define  GPIOH_MODER									(*((volatile u32*) (GPIOH_BASE_ADDRESS +GPIOx_MODER)))
+#define  GPIOH_OTYPER									(*((volatile u32*) (GPIOH_BASE_ADDRESS +GPIOx_OTYPER)))
+#define  GPIOH_OSPEEDR								    (*((volatile u32*) (GPIOH_BASE_ADDRESS +GPIOx_OSPEEDR)))
+#define  GPIOH_PUPDR									(*((volatile u32*) (GPIOH_BASE_ADDRESS +GPIOx_PUPDR)))
+#define  GPIOH_IDR										(*((volatile u32*) (GPIOH_BASE_ADDRESS +GPIOx_IDR)))
+#define  GPIOH_ODR										(*((volatile u32*) (GPIOH_BASE_ADDRESS +GPIOx_ODR)))
+#define  GPIOH_BSRR										(*((volatile u32*) (GPIOH_BASE_ADDRESS +GPIOx_BSRR)))
+#define  GPIOH_LCKR										(*((volatile u32*) (GPIOH_BASE_ADDRESS +GPIOx_LCKR)))
+#define  GPIOH_AFRL										(*((volatile u32*) (GPIOH_BASE_ADDRESS +GPIOx_AFRL)))
+#define  GPIOH_AFRH										(*((volatile u32*) (GPIOH_BASE_ADDRESS +GPIOx_AFRH)))
+
+/***********************************************************************************
+	-----> Macros
+			  *  General Used Macros
+************************************************************************************/
+
+#define	 GPIO_bases_max									6
+#define  GPIO_MODER_MASK(pin_number)					(~(((u32) 0b11)<<(pin_number)))
+#define  GPIO_OSPEEDR_MASK(pin_number)					(~(((u32) 0b11)<<(pin_number)))
+#define  GPIO_PUPDR_MASK(pin_number)					(~(((u32) 0b11)<<(pin_number)))
+#define  GPIO_AFR_MAX									(0b1111)
+#define  GPIO_AFR_MASK(pin_number)						(~(((u32) 0b1111)<<(pin_number)))
+
+#endif //GPIO_PRIVATE_H
+

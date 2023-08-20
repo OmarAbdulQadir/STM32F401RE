@@ -1,0 +1,233 @@
+/**********************************************************************************/
+/***						Date: 16/8/2023	Day: Wednesday						***/
+/***		General purpose I/O driver for the microcontroller STM32F401		***/
+/***    			 Created By: Omar Abdul Qadir	 Version= 2.0	            ***/
+/**********************************************************************************/
+/***		         Note: All the data in the file is readable,				***/
+/***			And any editing will affect the controller's behavior,			***/
+/***				  So It's not recommended to edit any data,					***/
+/***			Unless you are sure of what is the effect on behaviors.			***/
+/**********************************************************************************/
+
+
+
+/**********************************************************************************
+ *******************	 	   Standard libraries section			***************
+ **********************************************************************************/ 
+#include "../Inc/STD_TYPES.h"
+#include "../Inc/BIT_MATH.h"
+
+
+/**********************************************************************************
+ *******************		 	Private heders section				***************
+ **********************************************************************************/
+#include "../Inc/GPIO_config.h"
+#include "../Inc/GPIO_private.h"
+#include "../Inc/GPIO_interface.h"
+
+
+/**********************************************************************************
+ *******************	 		Global variables section			***************
+ **********************************************************************************/ 
+volatile GPIO_t* GPIO_bases[GPIO_bases_max] = {GPIOA_BASE_ADDRESS,
+									  GPIOB_BASE_ADDRESS,
+									  GPIOC_BASE_ADDRESS,
+									  GPIOD_BASE_ADDRESS,
+									  GPIOE_BASE_ADDRESS,
+									  GPIOH_BASE_ADDRESS};
+
+
+
+/**********************************************************************************
+ *******************		 		GPIO_voidSetPinMode				***************
+ **********************************************************************************/
+/*		Function Set The Mode Of Pin Mode Take 2Bits	
+
+									MODE_INPUT
+									MODE_OUTPUT
+									MODE_ALTF
+									MODE_ANALOG	
+
+*/
+void GPIO_voidSetPinMode(u8 copy_u8PORT, u8 copy_u8PIN, u8 copy_u8MODE)
+ {
+	 if((copy_u8PORT <= GPIOH_PORT) && (copy_u8PIN <= PIN15) && (copy_u8MODE <= MODE_ANALOG)){
+		 GPIO_bases[copy_u8PORT] -> MODER &= GPIO_MODER_MASK( copy_u8PIN * 2 );
+		 GPIO_bases[copy_u8PORT] -> MODER |= ( ( ( u32 ) copy_u8MODE ) << copy_u8PIN * 2 );
+	 }
+	 else{
+
+	 }
+ }
+ 
+ 
+/**********************************************************************************
+ *******************		 	GPIO_voidSetOutType					***************
+ **********************************************************************************/ 
+/*				Function Set The Type Of OutPut (OpenDrain = 0 , PushPull = 1)
+
+								OUTPUT_TYPE_PUSH_PULL
+								OUTPUT_TYPE_OPEN_DRAIN	
+
+*/
+void GPIO_voidSetOutType(u8 copy_u8PORT ,u8 copy_u8PIN,u8 copy_u8Type) 
+{
+	 if((copy_u8PORT <= GPIOH_PORT) && (copy_u8PIN <= PIN15)){
+		 ( copy_u8Type == LOW ) ? clr_bit( ( GPIO_bases[copy_u8PORT] -> OTYPER ), copy_u8PIN ) : set_bit(( GPIO_bases[copy_u8PORT] -> OTYPER ), copy_u8PIN);
+	 }
+	 else{
+	 }
+}
+
+
+/**********************************************************************************
+ *******************		 	GPIO_voidSetOutSpee					***************
+ **********************************************************************************/ 
+/*						Function Set The Speed (LOW , Meduim , High ,VeryHaigh		
+							
+							OUTPUT_LOW_SPEED
+							OUTPUT_MEDUIM_SPEED
+							OUTPUT_HIGH_SPEED
+							OUTPUT_VERY_HIGH_SPEED
+							
+							
+
+*/
+void GPIO_voidSetOutSpeed(u8 copy_u8PORT ,u8 copy_u8PIN,u8 copy_u8Speed)
+{
+	 if((copy_u8PORT <= GPIOH_PORT) && (copy_u8PIN <= PIN15) && (copy_u8Speed <= OUTPUT_VERY_HIGH_SPEED)){
+		 switch (copy_u8PORT)
+		 {
+		 	 case GPIOA_PORT: GPIOA_OSPEEDR &=(u32) GPIO_OSPEEDR_MASK(copy_u8PIN); GPIOA_OSPEEDR |=(u32)  (copy_u8Speed << (copy_u8PIN)); break;
+		 	 case GPIOB_PORT: GPIOB_OSPEEDR &=(u32) GPIO_OSPEEDR_MASK(copy_u8PIN); GPIOB_OSPEEDR |=(u32)  (copy_u8Speed << (copy_u8PIN)); break;
+		 	 case GPIOC_PORT: GPIOC_OSPEEDR &=(u32) GPIO_OSPEEDR_MASK(copy_u8PIN); GPIOC_OSPEEDR |=(u32)  (copy_u8Speed << (copy_u8PIN)); break;
+		 	 case GPIOD_PORT: GPIOD_OSPEEDR &=(u32) GPIO_OSPEEDR_MASK(copy_u8PIN); GPIOD_OSPEEDR |=(u32)  (copy_u8Speed << (copy_u8PIN)); break;
+		 	 case GPIOE_PORT: GPIOE_OSPEEDR &=(u32) GPIO_OSPEEDR_MASK(copy_u8PIN); GPIOE_OSPEEDR |=(u32)  (copy_u8Speed << (copy_u8PIN)); break;
+		 	 case GPIOH_PORT: GPIOH_OSPEEDR &=(u32) GPIO_OSPEEDR_MASK(copy_u8PIN); GPIOH_OSPEEDR |=(u32)  (copy_u8Speed << (copy_u8PIN)); break;
+		 	 default: break;
+		 }
+	 }
+	 else{
+
+	 }
+}
+
+
+/**********************************************************************************
+ *******************		 	GPIO_voidSetPull					***************
+ **********************************************************************************/ 
+/*		Function Set The PULL :
+								
+					PULL_OFF
+					PULL_UP
+					PULL_DOWN
+	
+	
+*/
+void GPIO_voidSetPull(u8 copy_u8PORT ,u8 copy_u8PIN,u8 copy_u8PULL_TYPE)
+{
+	 if((copy_u8PORT <= GPIOH_PORT) && (copy_u8PIN <= PIN15) && (copy_u8PULL_TYPE <= PULL_DOWN)){
+		 switch (copy_u8PORT)
+		 {
+		 	 case GPIOA_PORT: GPIOA_PUPDR &=(u32) GPIO_PUPDR_MASK(copy_u8PIN); GPIOA_PUPDR |=(u32)  (copy_u8PULL_TYPE << (copy_u8PIN)); break;
+		 	 case GPIOB_PORT: GPIOB_PUPDR &=(u32) GPIO_PUPDR_MASK(copy_u8PIN); GPIOB_PUPDR |=(u32)  (copy_u8PULL_TYPE << (copy_u8PIN)); break;
+		 	 case GPIOC_PORT: GPIOC_PUPDR &=(u32) GPIO_PUPDR_MASK(copy_u8PIN); GPIOD_PUPDR |=(u32)  (copy_u8PULL_TYPE << (copy_u8PIN)); break;
+		 	 case GPIOD_PORT: GPIOD_PUPDR &=(u32) GPIO_PUPDR_MASK(copy_u8PIN); GPIOD_PUPDR |=(u32)  (copy_u8PULL_TYPE << (copy_u8PIN)); break;
+		 	 case GPIOE_PORT: GPIOE_PUPDR &=(u32) GPIO_PUPDR_MASK(copy_u8PIN); GPIOE_PUPDR |=(u32)  (copy_u8PULL_TYPE << (copy_u8PIN)); break;
+		 	 case GPIOH_PORT: GPIOH_PUPDR &=(u32) GPIO_PUPDR_MASK(copy_u8PIN); GPIOH_PUPDR |=(u32)  (copy_u8PULL_TYPE << (copy_u8PIN)); break;
+		 	 default: break;
+		 }
+	 }
+	 else{
+
+	 }
+}
+
+
+/**********************************************************************************
+ *******************		 	GPIO_u8ReadData						***************
+ **********************************************************************************/ 
+/*		Function To Read Data From IDR		*/
+u8 GPIO_u8ReadData(u8 copy_u8PORT ,u8 copy_u8PIN)
+{
+	u8 u8Local_Data = 0 ;
+	 if((copy_u8PORT <= GPIOH_PORT) && (copy_u8PIN <= PIN15)){
+		 switch (copy_u8PORT)
+		 {
+		 	 case GPIOA_PORT: u8Local_Data = get_bit(GPIOA_IDR, copy_u8PIN); break;
+		 	 case GPIOB_PORT: u8Local_Data = get_bit(GPIOB_IDR, copy_u8PIN); break;
+		 	 case GPIOC_PORT: u8Local_Data = get_bit(GPIOC_IDR, copy_u8PIN); break;
+		 	 case GPIOD_PORT: u8Local_Data = get_bit(GPIOD_IDR, copy_u8PIN); break;
+		 	 case GPIOE_PORT: u8Local_Data = get_bit(GPIOE_IDR, copy_u8PIN); break;
+		 	 case GPIOH_PORT: u8Local_Data = get_bit(GPIOH_IDR, copy_u8PIN); break;
+		 	 default: break;
+		 }
+	 }
+	 else{
+	 }
+	 return u8Local_Data ;
+}
+
+
+/**********************************************************************************
+ *******************		 	GPIO_voidWriteData					***************
+ **********************************************************************************/ 
+/*
+			* Function To Write Data At ODR	Value :
+									 high 
+									 low	
+*/
+void GPIO_voidWriteData(u8 copy_u8PORT ,u8 copy_u8PIN , u8 copy_u8Value )
+ {
+	 if((copy_u8PORT <= GPIOH_PORT) && (copy_u8PIN <= PIN15)){
+		GPIO_bases[copy_u8PORT] -> ODR &= GPIO_OSPEEDR_MASK( copy_u8PIN );
+		GPIO_bases[copy_u8PORT] -> ODR |= ( ( ( u32 ) copy_u8Value ) << copy_u8PIN );
+	 }
+	 else{
+	 }
+}
+
+
+/**********************************************************************************
+ *******************		 	GPIO_voidPinSetAltFn				***************
+ **********************************************************************************/  
+/*
+			Function Set The AltFn		: Every Pin Need 4 Bits SO We Have High AND Low
+*/
+void GPIO_voidPinSetAltFn(u8 copy_u8PORT ,u8 copy_u8PIN,u8 copy_u8AlT)
+
+{
+	if((copy_u8PORT <= GPIOH_PORT) && (copy_u8PIN <= PIN15) && (copy_u8AlT <= GPIO_AFR_MAX)){
+		u8 selected_reg = (copy_u8PIN < PIN8) ? LOW : HIGH;
+		switch(selected_reg){
+			case LOW:
+				/* From 0 To  7 */
+				switch(copy_u8PORT){
+				 	case GPIOA_PORT: GPIOA_AFRL &=(u32) GPIO_AFR_MASK(copy_u8PIN); GPIOA_AFRL |=(u32)  (copy_u8AlT << (copy_u8PIN)); break;
+				 	case GPIOB_PORT: GPIOB_AFRL &=(u32) GPIO_AFR_MASK(copy_u8PIN); GPIOB_AFRL |=(u32)  (copy_u8AlT << (copy_u8PIN)); break;
+				 	case GPIOC_PORT: GPIOC_AFRL &=(u32) GPIO_AFR_MASK(copy_u8PIN); GPIOC_AFRL |=(u32)  (copy_u8AlT << (copy_u8PIN)); break;
+				 	case GPIOD_PORT: GPIOD_AFRL &=(u32) GPIO_AFR_MASK(copy_u8PIN); GPIOD_AFRL |=(u32)  (copy_u8AlT << (copy_u8PIN)); break;
+				 	case GPIOE_PORT: GPIOE_AFRL &=(u32) GPIO_AFR_MASK(copy_u8PIN); GPIOE_AFRL |=(u32)  (copy_u8AlT << (copy_u8PIN)); break;
+				 	case GPIOH_PORT: GPIOH_AFRL &=(u32) GPIO_AFR_MASK(copy_u8PIN); GPIOH_AFRL |=(u32)  (copy_u8AlT << (copy_u8PIN)); break;
+				 	default: break;
+				}
+				break;
+			case HIGH:
+				/* From 8 To  15 */
+				switch(copy_u8PORT){
+			 		case GPIOA_PORT: GPIOA_AFRL &=(u32) GPIO_AFR_MASK(copy_u8PIN); GPIOA_AFRL |=(u32)  (copy_u8AlT << (copy_u8PIN)); break;
+			 		case GPIOB_PORT: GPIOB_AFRL &=(u32) GPIO_AFR_MASK(copy_u8PIN); GPIOB_AFRL |=(u32)  (copy_u8AlT << (copy_u8PIN)); break;
+			 		case GPIOC_PORT: GPIOC_AFRL &=(u32) GPIO_AFR_MASK(copy_u8PIN); GPIOC_AFRL |=(u32)  (copy_u8AlT << (copy_u8PIN)); break;
+			 		case GPIOD_PORT: GPIOD_AFRL &=(u32) GPIO_AFR_MASK(copy_u8PIN); GPIOD_AFRL |=(u32)  (copy_u8AlT << (copy_u8PIN)); break;
+			 		case GPIOE_PORT: GPIOE_AFRL &=(u32) GPIO_AFR_MASK(copy_u8PIN); GPIOE_AFRL |=(u32)  (copy_u8AlT << (copy_u8PIN)); break;
+			 		case GPIOH_PORT: GPIOH_AFRL &=(u32) GPIO_AFR_MASK(copy_u8PIN); GPIOH_AFRL |=(u32)  (copy_u8AlT << (copy_u8PIN)); break;
+			 		default: break;
+				}
+				break;
+			default:
+				break;
+		}
+	}
+}
+
+

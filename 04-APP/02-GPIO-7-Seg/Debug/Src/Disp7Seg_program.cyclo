@@ -1,0 +1,2 @@
+../Src/Disp7Seg_program.c:43:6:Disp7Seg_voidSysInit	2
+../Src/Disp7Seg_program.c:59:6:Disp7Seg_voidWriteNumber	5

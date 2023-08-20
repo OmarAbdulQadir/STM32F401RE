@@ -1,0 +1,28 @@
+/*
+ * main.c
+ *
+ *  Created on: Aug 16, 2023
+ *      Author: Omar A.Qadir
+ */
+
+#include "../Inc/STD_TYPES.h"
+#include "../Inc/BIT_MATH.h"
+
+#include "../Inc/RCC_interface.h"
+#include "../Inc/GPIO_interface.h"
+
+
+int main(void){
+
+	RCC_voidInitSysClock();
+
+	GPIO_voidSetPinMode(GPIOB_PORT, PIN8, MODE_OUTPUT);
+	GPIO_voidWriteData(GPIOB_PORT, PIN8, HIGH);
+	GPIO_voidSetOutType(GPIOA_PORT, PIN10, OUTPUT_MEDUIM_SPEED);
+	GPIO_voidSetOutSpeed(GPIOA_PORT, PIN1, copy_u8Speed)
+
+	while(1){
+
+	}
+	return 0;
+}

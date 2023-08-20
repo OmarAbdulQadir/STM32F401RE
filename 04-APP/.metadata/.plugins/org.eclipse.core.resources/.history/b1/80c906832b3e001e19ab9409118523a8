@@ -1,0 +1,23 @@
+/**********************************************************************************/
+/***						Date: 16/8/2023	Day: Wednesday						***/
+/***				Timers driver for the microcontroller STM32F401				***/
+/***    			 Created By: Omar Abdul Qadir	 Version= 2.0	            ***/
+/**********************************************************************************/
+/***		         Note: All the data in the file is readable,				***/
+/***			And any editing will affect the controller's behavior,			***/
+/***				  So It's not recommended to edit any data,					***/
+/***			Unless you are sure of what is the effect on behaviors.			***/
+/**********************************************************************************/
+
+/**********************************************************************************
+ ******************* 	guard of file will call on time in .c		***************
+ **********************************************************************************/
+#ifndef TIM_INTERFACE_H_
+#define TIM_INTERFACE_H_
+
+
+void TIM_vDelay_ms(u16 );
+void TIM_vDelay_us(u16 );
+
+
+#endif /* TIM_INTERFACE_H_ */

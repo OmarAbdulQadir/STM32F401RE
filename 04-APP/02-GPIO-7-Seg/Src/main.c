@@ -1,0 +1,36 @@
+/*
+ * main.c
+ *
+ *  Created on: Aug 17, 2023
+ *      Author: Omar A.Qadir
+ */
+
+
+#include "../Inc/STD_TYPES.h"
+#include "../Inc/BIT_MATH.h"
+
+#include "../Inc/RCC_interface.h"
+#include "../Inc/GPIO_interface.h"
+#include "../Inc/Disp7Seg_interface.h"
+
+
+int main(void){
+
+	u8 n= 7;
+
+	Disp7Seg_t CADisp_t = {GPIOA_PORT, DispType_CA, n, {PIN0, PIN1, PIN2, PIN3, PIN4, PIN5, PIN6}};
+	Disp7Seg_t CCDisp_t = {GPIOA_PORT, DispType_CC, n, {PIN7, PIN8, PIN9, PIN10, PIN11, PIN12, PIN13}};
+
+	RCC_voidInitSysClock();
+
+	Disp7Seg_voidSysInit(&CADisp_t);
+	Disp7Seg_voidSysInit(&CCDisp_t);
+
+	Disp7Seg_voidWriteNumber(&CADisp_t);
+	Disp7Seg_voidWriteNumber(&CCDisp_t);
+
+	while(1){
+
+	}
+	return 0;
+}

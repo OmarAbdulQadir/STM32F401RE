@@ -1,0 +1,37 @@
+/*
+ * TIMER_Private.h
+ *
+ *  Created on: Aug 19, 2023
+ *      Author: Omar A.Qadir
+ */
+
+#ifndef TIMER_PRIVATE_H_
+#define TIMER_PRIVATE_H_
+
+typedef struct{
+
+}B_TIMER_t;
+	u32
+	u32
+	u32
+	u32
+	u32
+	u32
+	u32
+	u32
+	u32
+	u32
+	u32
+	u32
+	u32
+	u32
+	u32
+typedef struct{
+
+}G_TIMER_t;
+
+typedef struct{
+
+}A_TIMER_t;
+
+#endif /* TIMER_PRIVATE_H_ */

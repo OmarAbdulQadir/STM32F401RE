@@ -1,0 +1,26 @@
+/*
+ * main.c
+ *
+ *  Created on: Aug 18, 2023
+ *      Author: Omar A.Qadir
+ */
+
+#include "../Inc/BIT_MATH.h"
+#include "../Inc/STD_TYPES.h"
+#include "../Inc/RCC_interface.h"
+#include "../Inc/GPIO_interface.h"
+#include "../Inc/LCD_interface.h"
+
+
+int main(void){
+
+	RCC_voidInitSysClock();
+
+	LCD_init();
+	LCD_write_str((u8*) "Hello World!");
+
+	while(1){
+
+	}
+	return 0;
+}

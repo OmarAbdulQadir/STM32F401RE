@@ -1,0 +1,20 @@
+03:48:46 **** Incremental Build of configuration Debug for project 03-GPIO-LCD ****
+make -j4 all 
+arm-none-eabi-gcc "../Src/LCD_program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F401RETx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/LCD_program.d" -MT"Src/LCD_program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/LCD_program.o"
+arm-none-eabi-gcc -o "03-GPIO-LCD.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Engineering\Embedded\ARM_interfacing\ARM_Cortex_M4\04-APP\03-GPIO-LCD\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="03-GPIO-LCD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 03-GPIO-LCD.elf
+ 
+arm-none-eabi-size   03-GPIO-LCD.elf 
+arm-none-eabi-objdump -h -S  03-GPIO-LCD.elf  > "03-GPIO-LCD.list"
+arm-none-eabi-objcopy  -O ihex  03-GPIO-LCD.elf  "03-GPIO-LCD.hex"
+   text	   data	    bss	    dec	    hex	filename
+   2352	     40	   1568	   3960	    f78	03-GPIO-LCD.elf
+Finished building: default.size.stdout
+ 
+Finished building: 03-GPIO-LCD.list
+Finished building: 03-GPIO-LCD.hex
+ 
+ 
+
+03:48:47 Build Finished. 0 errors, 0 warnings. (took 913ms)
+

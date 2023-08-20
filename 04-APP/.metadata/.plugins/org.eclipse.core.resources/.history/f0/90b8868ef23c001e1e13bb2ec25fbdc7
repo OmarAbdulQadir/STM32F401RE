@@ -1,0 +1,16 @@
+/*
+ * Disp7Seg_interface.h
+ *
+ *  Created on: Aug 17, 2023
+ *      Author: Omar A.Qadir
+ */
+
+#ifndef DISP7SEG_INTERFACE_H_
+#define DISP7SEG_INTERFACE_H_
+
+
+
+#endif /* DISP7SEG_INTERFACE_H_ */
+typedef struct{
+
+}Disp7Seg_t;
